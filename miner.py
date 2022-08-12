@@ -1,5 +1,7 @@
 import pyautogui as pt
-import pydirectinput as pdi
+
+## Windows only 
+# import pydirectinput as pdi
 from time import sleep
 
 class Miner:
@@ -13,9 +15,9 @@ class Miner:
             return 0
         else:
             ## Image was found => move to it and click x times
-            pdi.moveTo(position[0],position[1])
-            pdi.moveRel(off_x,off_y)
-            pdi.click(clicks=clicks)
+            pt.moveTo(position[0],position[1])
+            pt.moveRel(off_x,off_y)
+            pt.click(clicks=clicks)
 
     def positionImage(self, image, confidence):
         ## Returns the position of the image ex. ( 1300 , 700 )
@@ -59,25 +61,25 @@ class Miner:
 
     def actionKey(self, key, duration = 1):
         ## Helper function, presses key during certain amount of time
-        pdi.keyDown(key)
+        pt.keyDown(key)
         sleep(duration)
-        pdi.keyUp(key)
+        pt.keyUp(key)
 
     def changeDirectionCamera(self, x, y):
-        pdi.moveRel(x,y)
+        pt.moveRel(x,y)
 
     def startAttack(self, duration):
-        pdi.mouseDown()
+        pt.mouseDown()
         sleep(duration)
     
     def stopAttack(self):
-        pdi.mouseUp()
+        pt.mouseUp()
 
     def getResolution(self):
         return pt.size()
 
     def moveToCenter(self,resolution):
-        pdi.moveTo(resolution[0]/2,resolution[1]/2)
+        pt.moveTo(resolution[0]/2,resolution[1]/2)
 
     def rightClick(self):
         pt.rightClick()
